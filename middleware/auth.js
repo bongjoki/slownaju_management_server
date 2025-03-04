@@ -1,4 +1,9 @@
 const jwt = require("jsonwebtoken");
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
+
+const router = express.Router();
 
 module.exports = (req, res, next) => {
     const token = req.header("Authorization");
@@ -12,12 +17,6 @@ module.exports = (req, res, next) => {
         res.status(401).json({ message: "유효하지 않은 토큰" });
     }
 };
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-
-const router = express.Router();
 
 // 회원가입
 router.post("/register", async (req, res) => {
